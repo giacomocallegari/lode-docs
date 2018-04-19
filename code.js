@@ -49,8 +49,13 @@ function onInstall(e) {
 function showSidebar() {
     var ui = HtmlService.createHtmlOutputFromFile('sidebar')
         .setTitle('Strumento di cattura');
-    DocumentApp.getUi().showSidebar(ui);
-    
+    DocumentApp.getUi().showSidebar(ui);    
+}
+
+/**
+ * Accede al sistema LODE e ottiene, se esiste, la lezione in corso.
+ */
+function init() {
     // Accedo al sistema LODE.
     login();
     
