@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <!-- The CSS package above applies Google styling to buttons and other elements. -->
+
+    <style>
+    .branding-below {
+      bottom: 56px;
+      top: 0;
+    }
+    .branding-text {
+      left: 7px;
+      position: relative;
+      top: 3px;
+    }
+    .col-contain {
+      overflow: hidden;
+    }
+    .col-one {
+      float: left;
+      width: 50%;
+    }
+    .logo {
+      vertical-align: middle;
+    }
+    .radio-spacer {
+      height: 20px;
+    }
+    .width-100 {
+      width: 100%;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar branding-below">
+      <div class="block" id="button-bar">
+        <button class="blue" id="get-screenshot">Cattura schermata</button>
+        <button id="get-timestamp">Cattura timestamp</button>
+      </div>
+    </div>
+
+    <div class="sidebar bottom">
+      <img alt="Add-on logo" class="logo" src="https://upload.wikimedia.org/wikipedia/it/thumb/e/e4/Sigillo_Universit%C3%A0_di_Trento.svg/1024px-Sigillo_Universit%C3%A0_di_Trento.svg.png" width="27" height="27">
+      <span class="gray branding-text">Cattura di schermate</span>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      /**
+       * Assegna degli handler ai pulsanti per quando vengono cliccati.
+       */
+      $(function() {
+        $('#get-screenshot').click(getScreenshot);
+        $('#get-timestamp').click(getTimestamp);
+      });
+
+      /**
+       * Richiede la schermata corrente al dispositivo di cattura e la inserisce nel documento
+       * nella posizione del cursore.
+       */
+      function getScreenshot() {        
+        google.script.run.getScreenshot();        
+      }
+
+      /**
+       * Richiede il timestamp corrente al dispositivo di cattura e lo inserisce nel documento
+       * nella posizione del cursore.
+       */
+      function getTimestamp() {        
+        google.script.run.getTimestamp();        
+      }
+
+      /**
+       * Inserisce un div che contiene un messaggio di errore dopo un determinato elemento.
+       *
+       * @param {string} msg Il messaggio di errore da mostrare.
+       * @param {DOMElement} element L'elemento dopo il quale mostrare l'errore.
+       */
+      function showError(msg, element) {
+        var div = $('<div id="error" class="error">' + msg + '</div>');
+        $(element).after(div);
+      }
+    </script>
+  </body>
+</html>

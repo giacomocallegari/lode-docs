@@ -1,0 +1,19 @@
+{
+  "name": "lode-docs",
+  "version": "1.0.0",
+  "description": "Google Docs add-on for LODE",
+  "main": "code.gs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giacomocallegari/lode-docs.git"
+  },
+  "author": "giacomo.callegari@studenti.unitn.it",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giacomocallegari/lode-docs/issues"
+  },
+  "homepage": "https://github.com/giacomocallegari/lode-docs#readme"
+}
