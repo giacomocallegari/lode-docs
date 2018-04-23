@@ -2,7 +2,7 @@
   "name": "lode-docs",
   "version": "1.0.0",
   "description": "Google Docs add-on for LODE",
-  "main": "code.gs",
+  "main": "code.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

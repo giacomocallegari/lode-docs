@@ -10,10 +10,8 @@
  */
 var PATH = 'http://95.252.6.86:8080';
 var REC_URL = 'http://some.url.com/recording?time=';
-//var LEC_ID = '4649c6fe-39fa-489d-9074-23e1477678c7';
 var EMAIL = 'giacomo.callegari@studenti.unitn.it';
 var PASSWORD = 'ciao1234';
-//var TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxvZGVAdW5pdG4uaXQiLCJ0eXBlIjoicHJvZmVzc29yIiwiaWF0IjoxNTI0MDY2NDcwfQ.Cui7Heo0z1a1Y2yn--zAb08lwLqyU5qruO7W4dlkZww';
 var PIN = '1234';
 
 
@@ -187,7 +185,7 @@ function getTimestamp() {
 }
 
 /**
- * Inserisce lo screenshot nel documento.
+ * Inserisce la schermata nel documento.
  */
 function insertScreenshot() {
     console.log('Insert screenshot');
