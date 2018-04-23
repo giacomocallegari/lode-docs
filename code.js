@@ -8,7 +8,7 @@
 /**
  * Parametri di configurazione
  */
-var PATH = 'http://95.252.6.3:8080';
+var PATH = 'http://95.252.6.86:8080';
 var REC_URL = 'http://some.url.com/recording?time=';
 //var LEC_ID = '4649c6fe-39fa-489d-9074-23e1477678c7';
 var EMAIL = 'giacomo.callegari@studenti.unitn.it';
@@ -179,7 +179,7 @@ function getTimestamp() {
     var lecture = PropertiesService.getDocumentProperties().getProperty('LEC_ID');
     
     // Definisco l'URL della richiesta.
-    var reqUrl = PATH + '/api/lecture/' + LEC_ID + '/screenshot';
+    var reqUrl = PATH + '/api/lecture/' + lecture + '/screenshot';
 
     // Definisco i parametri della richiesta.
     var headers = {
@@ -201,11 +201,11 @@ function getTimestamp() {
     
     // Costruisco il link del timestamp.
     var baseUrl = REC_URL;
-    var linkUrl = baseUrl.append(timestamp);
+    var linkUrl = baseUrl.concat(timestamp);
     
     // Inserisco il marcatore per il timestamp nel documento.
     if (cursor) {
-        cursor.insertText('📽').setLink(linkUrl);
+        cursor.insertText('📽').setLinkUrl(linkUrl);
     } else {
         doc.getBody().appendParagraph('').insertText('📽').setLink(linkUrl);
     }
