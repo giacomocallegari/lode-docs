@@ -149,6 +149,18 @@ function getScreenshot() {
     var response = JSON.parse(UrlFetchApp.fetch(reqUrl, options));
     var blob = Utilities.newBlob(Utilities.base64Decode(response.img), MimeType.PNG);
 
+    // Restituisco il blob della schermata.
+    return blob;
+}
+
+/**
+ * Inserisce lo screenshot nel documento.
+ */
+function insertScreenshot() {
+    console.log('Insert screenshot');
+    
+    var blob = getScreenshot();
+    
     // Individuo la posizione del cursore.
     var doc = DocumentApp.getActiveDocument();
     var cursor = doc.getCursor();
@@ -194,6 +206,17 @@ function getTimestamp() {
     // Invio la richiesta.
     var response = JSON.parse(UrlFetchApp.fetch(reqUrl, options));
     var timestamp = response.timestamp;
+    
+    return timestamp;
+}
+
+/**
+ * Inserisce il timestamp nel documento.
+ */
+function insertTimestamp() {
+    console.log('Insert timestamp');
+    
+    var timestamp = getTimestamp();
 
     // Individuo la posizione del cursore.
     var doc = DocumentApp.getActiveDocument();

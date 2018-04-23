@@ -45,8 +45,8 @@
 <body>
     <div class="sidebar branding-below">
         <div id="button-bar" hidden=true>
-            <button class="blue" id="get-screenshot">Cattura schermata</button>
-            <button id="get-timestamp">Cattura timestamp</button>
+            <button class="blue" id="insert-screenshot">Cattura schermata</button>
+            <button id="insert-timestamp">Cattura timestamp</button>
         </div>
         <div id="loading" hidden="true">
             Caricamento in corso...
@@ -75,8 +75,8 @@
          */
         $(function() {
             $(document).ready(init);
-            $('#get-screenshot').click(getScreenshot);
-            $('#get-timestamp').click(getTimestamp);
+            $('#insert-screenshot').click(insertScreenshot);
+            $('#insert-timestamp').click(insertTimestamp);
             $('#retry').click(init);
         });
 
@@ -104,7 +104,7 @@
          * Richiede la schermata corrente al dispositivo di cattura e la inserisce nel documento
          * nella posizione del cursore.
          */
-        function getScreenshot() {
+        function insertScreenshot() {
             var loading = document.getElementById('loading');
             var screenshotError = document.getElementById('screenshot-error');
             var timestampError = document.getElementById('timestamp-error');
@@ -121,14 +121,14 @@
                     loading.hidden = true;
                     screenshotError.hidden = false;
                 })
-                .getScreenshot();
+                .insertScreenshot();
         }
 
         /**
          * Richiede il timestamp corrente al dispositivo di cattura e lo inserisce nel documento
          * nella posizione del cursore.
          */
-        function getTimestamp() {
+        function insertTimestamp() {
             var loading = document.getElementById('loading');
             var screenshotError = document.getElementById('screenshot-error');
             var timestampError = document.getElementById('timestamp-error');
@@ -145,7 +145,7 @@
                     loading.hidden = true;
                     timestampError.hidden = false;
                 })
-                .getTimestamp();
+                .insertTimestamp();
         }
 
         /**
