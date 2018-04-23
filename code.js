@@ -124,6 +124,7 @@ function getLecture() {
 
 /**
  * Esegue una richiesta HTTP al dispositivo di cattura per ottenere la schermata corrente.
+ * @return {Object} Il blob della schermata.
  */
 function getScreenshot() {
     console.log('Get screenshot');
@@ -154,34 +155,8 @@ function getScreenshot() {
 }
 
 /**
- * Inserisce lo screenshot nel documento.
- */
-function insertScreenshot() {
-    console.log('Insert screenshot');
-    
-    var blob = getScreenshot();
-    
-    // Individuo la posizione del cursore.
-    var doc = DocumentApp.getActiveDocument();
-    var cursor = doc.getCursor();
-
-    // Inserisco l'immagine nel documento.
-    if (cursor) {
-        var screenshot = cursor.insertInlineImage(blob);
-    } else {
-        var screenshot = doc.getBody().appendImage(0, screenshot);
-    }
-
-    //Ridimensiono l'immagine.
-    if (screenshot) {
-        var width = doc.getBody().getPageWidth();
-        var height = screenshot.getHeight() * (width / screenshot.getWidth());
-        screenshot.setWidth(width).setHeight(height);
-    }
-}
-
-/**
  * Esegue una richiesta HTTP al dispositivo di cattura per ottenere il timestamp corrente.
+ * @return {Object} Il timestamp.
  */
 function getTimestamp() {
     console.log('Get timestamp');
@@ -207,7 +182,36 @@ function getTimestamp() {
     var response = JSON.parse(UrlFetchApp.fetch(reqUrl, options));
     var timestamp = response.timestamp;
     
+    //Restituisco il timestamp.
     return timestamp;
+}
+
+/**
+ * Inserisce lo screenshot nel documento.
+ */
+function insertScreenshot() {
+    console.log('Insert screenshot');
+    
+    // Richiedo la schermata.
+    var blob = getScreenshot();
+    
+    // Individuo la posizione del cursore.
+    var doc = DocumentApp.getActiveDocument();
+    var cursor = doc.getCursor();
+
+    // Inserisco l'immagine nel documento.
+    if (cursor) {
+        var screenshot = cursor.insertInlineImage(blob);
+    } else {
+        var screenshot = doc.getBody().appendImage(0, screenshot);
+    }
+
+    //Ridimensiono l'immagine.
+    if (screenshot) {
+        var width = doc.getBody().getPageWidth();
+        var height = screenshot.getHeight() * (width / screenshot.getWidth());
+        screenshot.setWidth(width).setHeight(height);
+    }
 }
 
 /**
@@ -216,6 +220,7 @@ function getTimestamp() {
 function insertTimestamp() {
     console.log('Insert timestamp');
     
+    // Richiedo il timestamp.
     var timestamp = getTimestamp();
 
     // Individuo la posizione del cursore.
