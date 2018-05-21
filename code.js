@@ -8,7 +8,8 @@
 /**
  * Parametri di configurazione
  */
-var PATH = 'http://95.252.6.86:8080';
+var PATH = 'http://lode.disi.unitn.it';
+var PATH = 'http://95.232.109.219:8080';
 var REC_URL = 'http://some.url.com/recording?time=';
 var EMAIL = 'giacomo.callegari@studenti.unitn.it';
 var PASSWORD = 'ciao1234';
