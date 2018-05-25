@@ -44,24 +44,26 @@
 
 <body>
     <div class="sidebar branding-below">
-        <div id="button-bar" hidden=true>
+        <div class="block" id="button-bar" style="display: none">
             <button class="blue" id="insert-screenshot">Cattura schermata</button>
             <button id="insert-timestamp">Cattura timestamp</button>
         </div>
-        <div id="loading" hidden="true">
+        <div class="block" id="loading" style="display: none">
             Caricamento in corso...
         </div>
-        <div class="error" id="server-error" hidden="true">
-            <div class="block">Nessuna lezione trovata.</div>
+        <div class="block" id="server-error" style="display: none">
+            <div class="block">
+                <div class="error">Nessuna lezione trovata.</div>            
+            </div>
             <div class="block">
                 <button id="retry">Riprova</button>
             </div>
         </div>
-        <div class="error" id="screenshot-error" hidden="true">
-            <div class="block">Impossibile inserire l'immagine.</div>
+        <div class="block" id="screenshot-error" style="display: none">
+            <div class="error">Impossibile inserire l'immagine.</div>
         </div>
-        <div class="error" id="timestamp-error" hidden="true">
-            <div class="block">Impossibile inserire il timestamp.</div>
+        <div class="block" id="timestamp-error" style="display: none">
+            <div class="error">Impossibile inserire il timestamp.</div>
         </div>
     </div>
 
@@ -86,18 +88,20 @@
          * Accede al sistema LODE e ottiene, se esiste, la lezione in corso.
          */
         function init() {
+            var connection = document.getElementById('connection');
             var buttonBar = document.getElementById('button-bar');
             var serverError = document.getElementById('server-error');
 
-            serverError.hidden = true;
+            //connection.style = "display: block";
+            serverError.style = "display: none";
 
             google.script.run
                 .withSuccessHandler(function() {
-                    buttonBar.hidden = false;
+                    buttonBar.style = "display: block";
                 })
                 .withFailureHandler(function() {
-                    buttonBar.hidden = true;
-                    serverError.hidden = false;
+                    buttonBar.style = "display: none";
+                    serverError.style = "display: block";
                 })
                 .init();
         }
@@ -111,17 +115,17 @@
             var screenshotError = document.getElementById('screenshot-error');
             var timestampError = document.getElementById('timestamp-error');
 
-            loading.hidden = false;
-            screenshotError.hidden = true;
-            timestampError.hidden = true;
+            loading.style = "display: block";
+            screenshotError.style = "display: none";
+            timestampError.style = "display: none";
 
             google.script.run
                 .withSuccessHandler(function() {
-                    loading.hidden = true;
+                    loading.style = "display: none";
                 })
                 .withFailureHandler(function() {
-                    loading.hidden = true;
-                    screenshotError.hidden = false;
+                    loading.style = "display: none";
+                    screenshotError.style = "display: block";
                 })
                 .insertScreenshot();
         }
@@ -135,17 +139,17 @@
             var screenshotError = document.getElementById('screenshot-error');
             var timestampError = document.getElementById('timestamp-error');
 
-            loading.hidden = false;
-            screenshotError.hidden = true;
-            timestampError.hidden = true;
+            loading.style = "display:  block";
+            screenshotError.style = "display: none";
+            timestampError.style = "display: none";
 
             google.script.run
                 .withSuccessHandler(function() {
-                    loading.hidden = true;
+                    loading.style = "display: none";
                 })
                 .withFailureHandler(function() {
-                    loading.hidden = true;
-                    timestampError.hidden = false;
+                    loading.style = "display: none";
+                    timestampError.style = "display: block";
                 })
                 .insertTimestamp();
         }
